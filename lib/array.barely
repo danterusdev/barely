@@ -1,0 +1,3 @@
+function array8_get(array: *, index: whole_8): any_8 {
+    return any_8->(@cast_*any_8(+(array, *(index, 8))));
+};

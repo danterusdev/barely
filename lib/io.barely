@@ -1,0 +1,35 @@
+include "lib/syscall_linux.barely";
+
+function outln(buffer: *) {
+    out(buffer);
+    variable foo = 10;
+    sys_write(STDOUT, &(foo), 1);
+};
+
+function out(buffer: *) {
+    write(STDOUT, buffer);
+};
+
+function errln(buffer: *) {
+    err(buffer);
+    variable foo = 10;
+    sys_write(STDERR, &(foo), 1);
+};
+
+function err(buffer: *) {
+    write(STDERR, buffer);
+};
+
+function write(descriptor: whole_8, buffer: *) {
+    sys_write(descriptor, buffer, string_length(buffer));
+};
+
+function string_length(string: *): whole_8 {
+    variable length = 0;
+
+    while !(=(0_whole_1, *1(+(string, length)))) {
+        length = +(length, 1);
+    };
+
+    return length;
+};

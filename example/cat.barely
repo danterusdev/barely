@@ -1,0 +1,20 @@
+include "lib/io.barely";
+include "lib/array.barely";
+include "lib/file.barely";
+
+function main(arguments: **, argument_count: whole_8) {
+    if !(=(argument_count, 2)) {
+        errln("Only one argument (file input) expected!");
+        sys_exit(1);
+    };
+
+    variable file = @cast_*(array8_get(arguments, 1));
+    variable descriptor = sys_open(file, O_RDONLY, 0);
+    variable size = file_size(descriptor);
+
+    variable brk = sys_brk(@cast_*(0));
+    variable _ = sys_brk(+(brk, size));
+
+    sys_read(descriptor, brk, size);
+    out(brk);
+};

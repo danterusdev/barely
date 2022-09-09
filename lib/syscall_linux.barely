@@ -2,6 +2,7 @@ constant SYS_READ: whole_8 = 0;
 
 constant SYS_WRITE: whole_8 = 1;
 constant STDOUT: whole_8 = 1;
+constant STDERR: whole_8 = 2;
 
 constant SYS_OPEN: whole_8 = 2;
 constant O_RDONLY: whole_8 = 0;

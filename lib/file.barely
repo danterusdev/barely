@@ -1,0 +1,7 @@
+include "lib/syscall_linux.barely";
+
+function file_size(descriptor: whole_8): whole_8 {
+    variable stat: Stat;
+    sys_fstat(descriptor, &(stat));
+    return Stat->size(&(stat));
+};
